@@ -20,13 +20,13 @@ AWS と Oracle Cloud Infrastructure (OCI) をTerraform使って **Site-to-Site V
 
 ```text
 /
-├── AWS/            # AWS 側 Customer Gateway / VPN Connection
+├── aws/            # AWS 側 Customer Gateway / VPN Connection
 │   ├── provider.tf
 │   ├── variables.tf
 │   ├── main.tf
 │   ├── outputs.tf
 │   └── terraform.tfvars.example
-└── OCI/            # OCI 側 DRG / CPE / IPSec Connection
+└── oci/            # OCI 側 DRG / CPE / IPSec Connection
     ├── provider.tf          (oci provider v5.x)
     ├── variables.tf         (IKE/BGP/暗号パラメータを変数化)
     ├── main.tf
@@ -51,7 +51,7 @@ AWS と Oracle Cloud Infrastructure (OCI) をTerraform使って **Site-to-Site V
 
 ## セットアップ手順
 
-### 1. リポジトリをクローン
+### 1. リポジトリをクローン。。AWSおよびOCIどちらでもやります
 
 ```bash
 git clone git@github.com:maijun2/aws-oci-vpn-terraform.git
@@ -61,15 +61,15 @@ cd aws-oci-vpn-terraform
 ### 2. 変数ファイルを作成
 
 ```bash
-cp AWS/terraform.tfvars.example AWS/terraform.tfvars
-cp OCI/terraform.tfvars.example OCI/terraform.tfvars
+cp aws/terraform.tfvars.example aws/terraform.tfvars
+cp oci/terraform.tfvars.example oci/terraform.tfvars
 # → OCI側はコンパートメント関係の記述が必須ですので要注意
 ```
 
 ### 3. AWS 側をデプロイ
 
 ```bash
-cd ../AWS
+cd aws
 terraform init
 terraform plan
 terraform apply
@@ -79,7 +79,7 @@ terraform apply
 ### 4. OCI 側をデプロイ
 
 ```bash
-cd OCI
+cd oci
 terraform init
 terraform plan
 terraform apply            # 出力される oci_vpn_public_ip をメモ
@@ -88,7 +88,6 @@ terraform apply            # 出力される oci_vpn_public_ip をメモ
 ### 5. AWS 側を更新
 
 ```bash
-cd ../AWS
 # 上でメモした oci_vpn_public_ip を customer_gateway_ip に設定
 terraform plan
 terraform apply
@@ -116,11 +115,10 @@ terraform apply
 それぞれの環境で適宜destroyしてください
 
 ```bash
-cd OCI && terraform destroy
-cd ../AWS && terraform destroy
+terraform destroy
 ```
 
-残った EIP / VCN 等は手動で削除してください。
+もしも EIP / VCN 等が残っていたら手動で削除してください。
 
 ---
 
