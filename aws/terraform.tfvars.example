@@ -5,7 +5,7 @@ aws_region           = "ap-northeast-1"
 customer_gateway_name = "cgw-for-oci"
 
 # Customer Gateway の (初回はダミー) IP アドレス
-customer_gateway_ip  = "150.136.2.21"
+customer_gateway_ip  = "8.8.8.8"
 
 # Customer Gateway の BGP ASN。Oracleは31898
 customer_gateway_bgp_asn = 31898
