@@ -1,0 +1,29 @@
+# デプロイ先のリージョン
+aws_region           = "ap-northeast-1"
+
+# Customer Gateway の 名前
+customer_gateway_name = "cgw-for-oci"
+
+# Customer Gateway の (初回はダミー) IP アドレス
+customer_gateway_ip  = "150.136.2.21"
+
+# Customer Gateway の BGP ASN。Oracleは31898
+customer_gateway_bgp_asn = 31898
+
+# Site-to-Site VPN 接続設定の名前
+vpn_connection_name   = "vpn-to-oci"
+
+# PSK（英数字のみ、ピリオド・アンダースコアは使わない）
+pre_shared_key       = "MySecretKey123"
+
+# ※ 以下はデフォルトがあるので不要
+# transit_gateway_asn
+# tunnel1_inside_cidr
+# tunnel2_inside_cidr
+# phase1_encryption_algorithms
+# phase1_integrity_algorithms
+# phase1_dh_group_numbers
+# phase2_encryption_algorithms
+# phase2_integrity_algorithms
+# phase2_dh_group_numbers
+# ike_versions
