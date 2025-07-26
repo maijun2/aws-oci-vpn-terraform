@@ -1,0 +1,23 @@
+# 認証情報
+tenancy_ocid     = "テナンシーのOCIDを書く"
+compartment_id            = "コンパートメントのOCIDを書く"
+oci_region       = "リージョンを指定する"
+
+# AWS 側 VPC の CIDR など、OCI 側で経路を張りたいネットワークを指定
+static_routes = ["10.0.0.0/16"]
+
+# AWS 側エンドポイント (先ほど取得した tunnel1_address)
+aws_vpn_tunnel1_address   = "AWS側のVPN接続で使うグローバルIPを指定する"
+
+# BGP/PSK
+# aws_transit_gateway_asn = 64512  # default のままなら不要
+# oracle_customer_bgp_asn = 64512  # default のままなら不要
+pre_shared_key            = "ipsec接続の際の事前共有キーを書く"
+
+# ipsec_display_name は default のままでOK
+
+# ─────────────────────────
+# トンネル内部インターフェイス IP
+# ─────────────────────────
+tunnel1_customer_interface_ip = "169.254.21.1/30"
+tunnel1_oracle_interface_ip   = "169.254.21.2/30"
